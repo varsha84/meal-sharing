@@ -24,18 +24,31 @@ router.get("/", async (request, response) => {
               .then(data => response.json(data))
           }
           //Get meals that still has available reservations
-          //here having clause have problem that total_reservation is in string so it can not compare with max_reservation. thats why comparision is not working properly.
-          else if (request.query.availableReservations && request.query.availableReservations === 'true') {
+          
+            else if(request.query.availableReservations && request.query.availableReservations === 'true')
             console.log("availableReservations");
-            var coalesceres = knex.raw(
+            const availableReservations = request.query.availableReservations;
+           //console.log(availableReservations);
+            if (availableReservations) {
+            const coalesceres = knex.raw(
               "coalesce(sum(reservation.number_of_guests), 0) as total_reservation"
             );
-            await knex('meal').leftJoin('reservation','meal.id', '=','reservation.meal_id')
-            .select('meal.id', 'meal.title', 'meal.max_reservations', coalesceres)
-            .groupBy('meal.id')
-            .having('max_reservations','>', 'Number(total_reservation)')
-            .then(rows => response.json(rows));
-            
+          const totalReserveMeals = await knex("meal")
+          .select("meal.id", "max_reservations", coalesceres)
+          .leftJoin("reservation", "reservation.meal_id", "meal.id")
+          .groupBy("meal.id");
+          for (i = 0; i < totalReserveMeals.length; i++) {
+          totalReserveMeals[i].total_reservation = parseInt(
+          totalReserveMeals[i].total_reservation,
+          10
+      );
+    }
+    const availableMeals = totalReserveMeals.filter(
+      (x) => x.max_reservations > x.total_reservation
+    );
+    return response.send(availableMeals);
+
+
 
           }//Get meals that partially match a title.
           else if (request.query.title) {
