@@ -39,11 +39,7 @@ const handelSubmit=(e)=>{
     };
     console.log(newReservation);
 
-    /* const postFormData = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newReservation)
-    } */
+
 
     fetch("/api/reservations", {
         method: 'POST',

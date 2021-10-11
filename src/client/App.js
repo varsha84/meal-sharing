@@ -5,7 +5,7 @@ import Header from "./components/header/header";
 import Footer  from "./components/footer/footer";
 import {fetchMeals} from "./helper.js"
 import AddMealReservation from "./components/reservations/mealReservation";
-import AddMealReview from "./components/Review/mealReview";
+import AddMealReview from "./components/review/mealReview";
 //import mealReservationForm from "./components/reservations/mealReservation";
 /* const meals = [{id:1,title: "chicken vindaloo", description: "indian spicy chicken curry", location: "valby", when: "2021-08-08 04:49:05", max_reservations: 5, price: 120.23, created_date: "2017-08-08 19:40:23"},
   {id: 2,title: "paneer curry", description: "indian spicy paneer curry", location:, when:, max_reservations:, price:, created_date:},
