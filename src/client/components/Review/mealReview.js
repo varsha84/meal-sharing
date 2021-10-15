@@ -1,5 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
+import {Form, Button, Row, Col, Container } from 'react-bootstrap';
+
 
 function AddMealReview(props){
     console.log("review here")
@@ -52,19 +54,46 @@ function AddMealReview(props){
         console.log("i am done");
     }
     return (
-        <form action="" method="POST">
-           <h1>{meal.title}</h1>
-           <label for="title">experience </label>
-            <input type="text" name="title" onChange={(e)=> setTitle(e.target.value)}/>
+        <Container fluid>
+        <div>
+             <img
+                src={`../../../../src/client/assets/images/${meal.title}.jpg`}
+                width="500"
+                height="300"
+                className="d-inline-block align-top"
+                alt=""
+              />
+            
+        <Form>
+            <h3>Review for {meal.title}</h3>
+        <Form.Group  className="mb-3">
+          <Form.Label column sm="2">Experience</Form.Label>
+          <Col sm="4">
+          <Form.Control type="text" placeholder="Meal Experience" onChange={(e)=> setTitle(e.target.value)}/>
+          </Col>    
+        </Form.Group>
 
-            <label for="description">description </label>
-            <input type="text" name="description" onChange={(e)=> setDescription(e.target.value)}/>
+        <Form.Group className="mb-3">
+          <Form.Label>Meal Description </Form.Label>
+          <Col sm="4">
+          <Form.Control type="text" placeholder="description" onChange={(e)=> setDescription(e.target.value)}/>
+          </Col>    
+        </Form.Group>
 
-            <label for="stars">Rating</label>
-            <input type="number" name="stars" onChange={(e)=> setStars(e.target.value)}></input>
+        <Form.Group className="mb-3">            
+          <Form.Label>Rating</Form.Label>
+          <Col sm="4">
+          <Form.Control type="number" placeholder="rating" onChange={(e)=> setStars(e.target.value)}/>      
+          </Col>
+        </Form.Group>
 
-            <input type="submit" value="Submit" onClick={(e)=> handelSubmit(e)}/>
-        </form> 
+        <Button variant="primary" type="submit" onClick={(e)=> handelSubmit(e)}>
+          Submit
+        </Button>
+      </Form>
+      </div>
+      </Container>
+
     )
 
 }

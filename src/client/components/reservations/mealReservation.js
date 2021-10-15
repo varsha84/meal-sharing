@@ -1,5 +1,7 @@
 import React, { useEffect }  from "react";
 import { useParams } from "react-router";
+import {Form, Button } from 'react-bootstrap';
+
 
 
 /*  const requestOptions = {
@@ -72,25 +74,42 @@ React.useEffect(()=>{
 
     return (
        
-        <form action="" method="POST">
-            <h1>{meal.title}</h1>
-            <label for="number_of_guests">Number of guest</label>
-            <input type="number" name="number_of_guests" onChange={(e) => setGuests(e.target.value) }/>
+        <div>
+        <img
+           src={`../../../../src/client/assets/images/${meal.title}.jpg`}
+           width="300"
+           height="300"
+           className="d-inline-block align-top"
+           alt=""
+         />
+       
+   <Form>
+   <Form.Group className="mb-3">
+    <h2>Reservation for {meal.title}</h2>
+     <Form.Label>Number of guest</Form.Label>
+     <Form.Control type="text" placeholder="Number of guest" onChange={(e)=> setGuests(e.target.value)}/>    
+    </Form.Group>
 
+   <Form.Group className="mb-3">
+     <Form.Label>Contact Phonenumber </Form.Label>
+     <Form.Control type="number" placeholder="contact phonenumber" onChange={(e)=> setPhoneNumber(e.target.value)}/>
+   </Form.Group>
 
-            <label for="contact_phonenumber">phone number</label>
-            <input type="number" name="contact_phonenumber" onChange={(e) => setPhoneNumber(e.target.value) }></input>
-
-            <label for="contact_name">contact name</label>
-            <input type="" name="contact_name" onChange={(e) => setContactName(e.target.value) }></input>
-
-            <label for="contact_email">email </label>
-            <input type="email" name=" " onChange={(e) => setEmail(e.target.value) }></input>
-
-            <input type="submit" value="Submit" onClick={(e)=>handelSubmit(e)}/>
-        </form> 
-        )
-
+   <Form.Group className="mb-3">
+     <Form.Label>Contact Name</Form.Label>
+     <Form.Control type="text" placeholder="contact name" onChange={(e)=> setContactName(e.target.value)}/>      
+   </Form.Group>
+   <Form.Group className="mb-3">
+     <Form.Label>Email </Form.Label>
+     <Form.Control type="email" placeholder="email" onChange={(e)=> setEmail(e.target.value)}/>      
+   </Form.Group>
+   <Button variant="primary" type="submit" onClick={(e)=> handelSubmit(e)}>
+     Submit
+   </Button>
+ </Form>
+ </div>
+)
+        
 
 }
 
