@@ -3,21 +3,18 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import MealList from "./components/meals/mealList";
 import Header from "./components/header/header";
 import Footer  from "./components/footer/footer";
-import {fetchMeals} from "./helper.js"
+import {fetchMeals, fetchAvailableReservation} from "./helper.js"
 import AddMealReservation from "./components/reservations/mealReservation";
 import AddMealReview from "./components/review/mealReview";
-//import mealReservationForm from "./components/reservations/mealReservation";
-/* const meals = [{id:1,title: "chicken vindaloo", description: "indian spicy chicken curry", location: "valby", when: "2021-08-08 04:49:05", max_reservations: 5, price: 120.23, created_date: "2017-08-08 19:40:23"},
-  {id: 2,title: "paneer curry", description: "indian spicy paneer curry", location:, when:, max_reservations:, price:, created_date:},
-  {id:3,title:"", description;, location:, when:, max_reservations:, price:, created_date:},
-  {id:4,title:, description;, location:, when:, max_reservations:, price:, created_date:}
+import "./App.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-]
- */
+import Main from "./components/main/main";
+import { Navbar, Nav, Container, Form, FormControl, Button } from "react-bootstrap";
 function App() {
 
   const [meals, setMeals] = React.useState([])
+  const [availableReservations, setAvailableReservations] = React.useState([])
     
   React.useEffect(()=>{
         fetchMeals().then((data)=>{
@@ -27,22 +24,54 @@ function App() {
         .catch((e)=>console.log(e))
     }, [])
 
+    React.useEffect(()=>{
+      fetchAvailableReservation()
+      .then((data)=>{
+          console.log(data);
+          setAvailableReservations(data);
+      })
+      .catch((e)=>console.log(e))
+  }, [])
+
   return (
     <Router>
-      <div>
-        <Header/>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Meals</Link>
-            </li>
-          </ul>
-        </nav>
+      <Container fluid>
+        <Navbar bg="dark" variant="dark" sticky="top">
+          <Container fluid>
+            <Navbar.Brand href="#home">
+              <img
+                src="../../../../src/client/assets/images/logo2.png"
+                width="40"
+                height="40"
+                className="d-inline-block align-top"
+                alt=""
+              />
+            </Navbar.Brand>
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="/home">Home</Nav.Link>
+                <Nav.Link href="/">Meals</Nav.Link>
+              </Nav>
+              <Form className="d-flex">
+                <FormControl
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                />
+                <Button variant="outline-success">Search</Button>
+              </Form>
+            </Navbar.Collapse>
+          </Container>
+    
+        </Navbar>
       
-      </div>
-    {<Switch>
+        {<Switch>
+        <Route exact path="/home">
+          <Main/>
+        </Route> 
         <Route exact path="/">
-          <MealList meals={meals}/>
+          <MealList meals={meals} availableReservations = {availableReservations}/>
         </Route> 
         <Route exact path={`/meals/:id`}>
           <AddMealReservation meals={meals}/>
@@ -50,9 +79,9 @@ function App() {
         <Route exact path={`/meals/:id/review`}>
           <AddMealReview meals={meals}/>
         </Route>
-        
-    </Switch>}
-    <Footer/>
+      </Switch>}
+      <Footer/>
+      </Container>
     </Router>
     
   );
