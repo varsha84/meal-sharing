@@ -28,6 +28,7 @@ function AddMealReview(props){
         console.log("submit handle");
         e.preventDefault();
         // new Review
+        
         const newReview={
             title: title,
             description: description,
@@ -37,6 +38,7 @@ function AddMealReview(props){
 
         }
         console.log("review::"+ newReview);
+        console.log("review::"+ newReview.stars);
 
         fetch("/api/reviews/", {
             method: 'POST',

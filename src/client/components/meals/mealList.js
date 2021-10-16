@@ -9,6 +9,23 @@ function MealList(props){
 
   const [mealAvailable, setMealAvailable] = React.useState(false);
 
+  function getStarRating(reviews, mealId){
+    console.log(reviews)
+    let totalRating = 0
+    let count = 0
+    reviews.forEach(review => {
+      if (review.meal_id === mealId){
+        totalRating = totalRating + review.stars
+        count = count + 1
+      }
+      
+    })
+    if (count === 0){
+      return "No reviews"
+    }
+    return totalRating/count;
+  }
+
   console.log(props.availableReservations)
   
   return(
@@ -21,16 +38,14 @@ function MealList(props){
             <Card.Text>
               {meal.description}
             </Card.Text>
-            <span class="fa fa-star yellow-color"></span>
-            <span class="fa fa-star yellow-color"></span>
-            <span class="fa fa-star yellow-color"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
+            
+            <span> Rating : {getStarRating(props.reviews, meal.id)}</span>
             <div className="button-row">
             {(props.availableReservations.filter((data) => data.id === meal.id).length > 0)? 
               <Button variant="success"  size="sm" href={`/meals/${meal.id}`}> Reserve </Button> : 
               <Button variant="danger"  size="sm" href="#">SoldOut</Button>
             }
+            
             <Button  size="sm" href={`/meals/${meal.id}/review`}> Review </Button>
             </div>
           </Card.Body>
