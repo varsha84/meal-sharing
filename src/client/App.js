@@ -15,14 +15,21 @@ function App() {
 
   const [meals, setMeals] = React.useState([])
   const [availableReservations, setAvailableReservations] = React.useState([])
+  const [search, setSearch] = React.useState("");
     
   React.useEffect(()=>{
-        fetchMeals().then((data)=>{
+    if(search ===""){
+      fetchMeals().then((data)=>{
             console.log(data);
             setMeals(data);
         })
         .catch((e)=>console.log(e))
-    }, [])
+    }
+    else{    
+      const searchMeal = meals.filter((meal)=> meal.title.toLowerCase().includes(search.toLocaleLowerCase()))
+      setMeals(searchMeal);
+    }
+    }, [search])
 
     React.useEffect(()=>{
       fetchAvailableReservation()
@@ -33,6 +40,7 @@ function App() {
       .catch((e)=>console.log(e))
   }, [])
 
+ 
   return (
     <Router>
       <Container fluid>
@@ -58,8 +66,8 @@ function App() {
                   placeholder="Search"
                   className="me-2"
                   aria-label="Search"
-                />
-                <Button variant="outline-success">Search</Button>
+                  onChange={(e)=>setSearch(e.target.value)}/>
+                
               </Form>
             </Navbar.Collapse>
           </Container>
@@ -79,6 +87,8 @@ function App() {
         <Route exact path={`/meals/:id/review`}>
           <AddMealReview meals={meals}/>
         </Route>
+
+
       </Switch>}
       <Footer/>
       </Container>
