@@ -11,4 +11,9 @@ function fetchAvailableReservation(){
 
 }
 
-export {fetchMeals, fetchAvailableReservation}
+function fetchSearchMeal(){
+    return fetch("http://localhost:5000/api/meals")
+    .then((response=>response.json()))
+}
+
+export {fetchMeals, fetchAvailableReservation, fetchSearchMeal}
