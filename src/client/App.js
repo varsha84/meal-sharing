@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import MealList from "./components/meals/mealList";
 import Header from "./components/header/header";
 import Footer  from "./components/footer/footer";
-import {fetchMeals, fetchAvailableReservation} from "./helper.js"
+import {fetchMeals, fetchAvailableReservation, fetchReview} from "./helper.js"
 import AddMealReservation from "./components/reservations/mealReservation";
 import AddMealReview from "./components/review/mealReview";
 import "./App.css"
@@ -16,6 +16,7 @@ function App() {
   const [meals, setMeals] = React.useState([])
   const [availableReservations, setAvailableReservations] = React.useState([])
   const [search, setSearch] = React.useState("");
+  const [reviews, setReviews] = React.useState([]);
     
   React.useEffect(()=>{
     if(search ===""){
@@ -26,20 +27,27 @@ function App() {
         .catch((e)=>console.log(e))
     }
     else{    
-      const searchMeal = meals.filter((meal)=> meal.title.toLowerCase().includes(search.toLocaleLowerCase()))
+      const searchMeal = meals.filter((meal)=> meal.title.toLowerCase().includes(search.toLowerCase()))
       setMeals(searchMeal);
     }
-    }, [search])
+  }, [search])
 
-    React.useEffect(()=>{
-      fetchAvailableReservation()
-      .then((data)=>{
-          console.log(data);
-          setAvailableReservations(data);
-      })
-      .catch((e)=>console.log(e))
+  React.useEffect(()=>{
+    fetchAvailableReservation()
+    .then((data)=>{
+      console.log(data);
+      setAvailableReservations(data);
+    })
+    .catch((e)=>console.log(e))
   }, [])
-
+  
+  React.useEffect(()=>{
+    fetchReview()
+    .then((data)=> {
+      console.log(data)
+      setReviews(data)
+    })
+  },[])
  
   return (
     <Router>
@@ -79,7 +87,7 @@ function App() {
           <Main/>
         </Route> 
         <Route exact path="/">
-          <MealList meals={meals} availableReservations = {availableReservations}/>
+          <MealList meals={meals} availableReservations = {availableReservations} reviews={reviews}/>
         </Route> 
         <Route exact path={`/meals/:id`}>
           <AddMealReservation meals={meals}/>
