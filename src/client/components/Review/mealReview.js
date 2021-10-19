@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router";
-import {Form, Button, Row, Col, Container } from 'react-bootstrap';
+import {Form, Button, Row, Col, Container, Modal } from 'react-bootstrap';
 
 
 function AddMealReview(props){
@@ -13,6 +13,14 @@ function AddMealReview(props){
     const [stars, setStars] = React.useState(0);
     const [title, setTitle] = React.useState("");
 
+    //back to meal page after submit
+    let history = useHistory();
+
+    // Alert successful
+    //const [show, setShow] = React.useState(true);
+    //form validation
+    const [validated, setValidated] = React.useState(false);
+
     React.useEffect(()=>{
         fetch(`http://localhost:5000/api/meals/${mealId}`)
         .then((response)=>response.json())
@@ -24,9 +32,18 @@ function AddMealReview(props){
 
     },[])
     
-    const handelSubmit=(e)=>{
-        console.log("submit handle");
+    function handleSubmit(e){
+        console.log("submit review handle");
         e.preventDefault();
+
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+    
+        setValidated(true);
+
         // new Review
         
         const newReview={
@@ -48,7 +65,8 @@ function AddMealReview(props){
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            //setReservation(true)
+            alert("Review Successfully submitted")
+            history.push("/")
         })
         .catch(e => console.log(e));
         
@@ -56,47 +74,32 @@ function AddMealReview(props){
         console.log("i am done");
     }
     return (
-        <Container fluid>
-        <div>
-             <img
-                src={`../../../../src/client/assets/images/${meal.title}.jpg`}
-                width="500"
-                height="300"
-                className="d-inline-block align-top"
-                alt=""
-              />
             
-        <Form>
-            <h3>Review for {meal.title}</h3>
+      <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
+        <div className="form-title">{meal.title}</div>
+        <img
+            src={`../../../../src/client/assets/images/${meal.title}.jpg`}
+            width="500"
+            height="300"
+            className="d-inline-block align-top"
+            alt=""
+          />
         <Form.Group  className="mb-3">
-          <Form.Label column sm="2">Experience</Form.Label>
-          <Col sm="4">
-          <Form.Control type="text" placeholder="Meal Experience" onChange={(e)=> setTitle(e.target.value)}/>
-          </Col>    
+          <Form.Label>Experience</Form.Label>
+          <Form.Control type="text" placeholder="Meal Experience" onChange={(e)=> setTitle(e.target.value)} required/>
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Meal Description </Form.Label>
-          <Col sm="4">
-          <Form.Control type="text" placeholder="description" onChange={(e)=> setDescription(e.target.value)}/>
-          </Col>    
+          <Form.Control type="text" placeholder="description" onChange={(e)=> setDescription(e.target.value)} required/>
         </Form.Group>
 
         <Form.Group className="mb-3">            
           <Form.Label>Rating</Form.Label>
-          <Col sm="4">
-          <Form.Control type="number" placeholder="rating" onChange={(e)=> setStars(e.target.value)}/>      
-          </Col>
+          <Form.Control type="number" placeholder="rating" onChange={(e)=> setStars(e.target.value)} required/>      
         </Form.Group>
-
-        <Button variant="primary" type="submit" onClick={(e)=> handelSubmit(e)}>
-          Submit
-        </Button>
-      </Form>
-      </div>
-      </Container>
-
-    )
-
+    <Button variant="primary" type="submit" >Submit</Button>
+    </Form>
+ )
 }
-export default AddMealReview    
+export default AddMealReview

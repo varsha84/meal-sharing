@@ -17,4 +17,10 @@ function fetchReview(){
     
 
 }
-export {fetchMeals, fetchAvailableReservation,fetchReview}
+function fetchRating(mealId){
+    return fetch(`http://localhost:5000/api/reviews/meal/${mealId}`)
+    .then((response=>response.json()))
+        
+}
+
+export {fetchMeals, fetchAvailableReservation, fetchReview, fetchRating}
