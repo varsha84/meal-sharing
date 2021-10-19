@@ -1,7 +1,6 @@
 import React from "react";
 import MealReservationForm from "../reservations/mealReservation";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Card, Button, Container, Row, Col} from 'react-bootstrap'
 import { fetchRating } from "../../helper"
 
