@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import MealList from "./components/meals/mealList";
+import CreateMeal from "./components/meals/createMeal";
 import Header from "./components/header/header";
 import Footer  from "./components/footer/footer";
 import {fetchMeals, fetchAvailableReservation, fetchReview} from "./helper.js"
@@ -8,7 +9,6 @@ import AddMealReservation from "./components/reservations/mealReservation";
 import AddMealReview from "./components/review/mealReview";
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import Main from "./components/main/main";
 import { Navbar, Nav, Container, Form, FormControl, Button } from "react-bootstrap";
 function App() {
@@ -47,11 +47,17 @@ function App() {
       console.log(data)
       setReviews(data)
     })
-  },[])
- 
+  }, [])
+
+ /* function handleCreateMealForm(){
+   console.log("abcd")
+   return (
+    <CreateMeal/>
+   )
+ } */
   return (
     <Router>
-      <Container fluid>
+      <div fluid className="main-container">
         <Navbar bg="dark" variant="dark" sticky="top">
           <Container fluid>
             <Navbar.Brand href="#home">
@@ -67,6 +73,7 @@ function App() {
               <Nav className="me-auto">
                 <Nav.Link href="/home">Home</Nav.Link>
                 <Nav.Link href="/">Meals</Nav.Link>
+                <Nav.Link href="/createMeal">Create Meals</Nav.Link>
               </Nav>
               <Form className="d-flex">
                 <FormControl
@@ -89,6 +96,9 @@ function App() {
         <Route exact path="/">
           <MealList meals={meals} availableReservations = {availableReservations} reviews={reviews}/>
         </Route> 
+        <Route exact path="/createMeal">
+          <CreateMeal/>
+        </Route> 
         <Route exact path={`/meals/:id`}>
           <AddMealReservation meals={meals}/>
         </Route> 
@@ -99,7 +109,7 @@ function App() {
 
       </Switch>}
       <Footer/>
-      </Container>
+      </div>
     </Router>
     
   );

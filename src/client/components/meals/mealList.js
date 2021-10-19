@@ -3,6 +3,7 @@ import MealReservationForm from "../reservations/mealReservation";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Card, Button, Container, Row, Col} from 'react-bootstrap'
+import { fetchRating } from "../../helper"
 
  
 function MealList(props){
@@ -10,7 +11,7 @@ function MealList(props){
   const [mealAvailable, setMealAvailable] = React.useState(false);
 
   function getStarRating(reviews, mealId){
-    console.log(reviews)
+    
     let totalRating = 0
     let count = 0
     reviews.forEach(review => {
@@ -23,23 +24,36 @@ function MealList(props){
     if (count === 0){
       return "No reviews"
     }
-    return totalRating/count;
+    return parseFloat(totalRating/count).toFixed(1);
   }
 
-  console.log(props.availableReservations)
+  // review rating handling on backedn -> not displaying on card 
+  function getRating(mealId){
+    
+    fetchRating(mealId)
+    .then((data) => {
+      let rating = Object.values(data[0])[0];
+      if (rating !== null){
+          rating =  parseFloat(rating).toFixed(1)
+      }
+      else{ return "No Reviews"}
+      console.log(rating);
+      return rating
+    });
+  }
   
   return(
-    <Row> 
+    <Row className="meallist"> 
       { props.meals.map( (meal)=> 
-        <Card style={{ width: '18rem', margin: '10px' }} key={meal.id}>
-          <Card.Img variant="top" width="350" height="250" src={`../../../../src/client/assets/images/${meal.title}.jpg`}/>
+        <Card className= "card-background" style={{ width: '18rem', margin: '10px' }} key={meal.id}>
+          <Card.Img className="photo" variant="top" width="350" height="250" src={`../../../../src/client/assets/images/${meal.title}.jpg`}/>
           <Card.Body>
-            <Card.Title>{meal.title}</Card.Title>
-            <Card.Text>
+            <Card.Title className="meal-title">{meal.title}</Card.Title>
+            <Card.Text className="meal-description">
               {meal.description}
             </Card.Text>
             
-            <span> Rating : {getStarRating(props.reviews, meal.id)}</span>
+            <span className="rating"> Rating : { getStarRating (props.reviews, meal.id) }</span>
             <div className="button-row">
             {(props.availableReservations.filter((data) => data.id === meal.id).length > 0)? 
               <Button variant="success"  size="sm" href={`/meals/${meal.id}`}> Reserve </Button> : 

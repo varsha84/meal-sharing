@@ -9,6 +9,7 @@
 .button-row{
     display: flex;
     justify-content: space-between;
+    padding-top: 10px;
 
 }
 .footer{
@@ -43,5 +44,57 @@
 }
 
 .yellow-color{
-    color:rgb(243, 198, 51);
+    color:rgb(240, 190, 25);
 }
+.meallist{
+    justify-content: space-evenly;
+}
+.photo{
+    padding-top: 10px;
+}
+.card-background{
+    background-color:rgb(231, 190, 137);
+    border-radius: 5px;
+}
+
+.main-container{
+    background-color:#e4d0d1;
+}
+.meal-title{
+    font-size:larger;
+    font-weight: bold;
+    
+}
+.meal-description{
+    font-size: smaller;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.rating{
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.modal-header img {
+    max-width: 100%;
+}
+.form-title{
+    font-size: larger;
+    font-weight: bold;
+    padding-bottom: 20px;
+    
+}
+.all-form{
+    width: 50%;
+    margin: auto;
+    
+}
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }

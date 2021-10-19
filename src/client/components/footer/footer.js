@@ -29,8 +29,8 @@ export default function Footer(){
                 
             </Col>
             <Col className="footer-content">
-                <div class="ft-main-item">
-                    <h2 class="ft-title">Stay Updated</h2>
+                <div className="ft-main-item">
+                    <h2 className="ft-title">Stay Updated</h2>
                     <p>Subscribe to our newsletter to get our latest news.</p>
                     <form>
                         <input type="email" name="email" placeholder="Enter email address"/>

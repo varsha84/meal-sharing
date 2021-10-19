@@ -3,11 +3,9 @@ import {Image, Container, Row} from 'react-bootstrap'
 
 function Main(){
     return(
-        
         <Row> 
                 <Image  src="../../../../src/client/assets/images/main4.jpeg" alt="home image"/>
-        </Row> 
-        
+        </Row>  
     )
 }
 export default Main
