@@ -62,7 +62,7 @@ function App() {
           <Container fluid>
             <Navbar.Brand href="#home">
               <img
-                src="../../../../src/client/assets/images/logo2.png"
+                src="/public/images/logo2.png"
                 width="40"
                 height="40"
                 className="d-inline-block align-top"

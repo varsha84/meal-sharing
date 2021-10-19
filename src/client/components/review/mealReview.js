@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import {Form, Button, Row, Col, Container, Modal } from 'react-bootstrap';
-
+import { useHistory } from "react-router-dom";
 
 function AddMealReview(props){
     console.log("review here")
@@ -78,7 +78,7 @@ function AddMealReview(props){
       <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
         <div className="form-title">{meal.title}</div>
         <img
-            src={`../../../../src/client/assets/images/${meal.title}.jpg`}
+            src={`/public/images/${meal.title}.jpg`}
             width="500"
             height="300"
             className="d-inline-block align-top"

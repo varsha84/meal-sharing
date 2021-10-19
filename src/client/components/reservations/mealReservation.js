@@ -80,7 +80,7 @@ return (
 
  <h2>Reservation</h2>
  <img
-           src={`../../../../src/client/assets/images/${meal.title}.jpg`}
+           src={`/public/images/${meal.title}.jpg`}
            width="500"
            height="300"
            className="d-inline-block align-top"
