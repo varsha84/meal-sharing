@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { Card, Button, Container, Row, Col} from 'react-bootstrap'
 import { fetchRating } from "../../helper"
 
+
+
  
 function MealList(props){
 
@@ -45,7 +47,7 @@ function MealList(props){
     <Row className="meallist"> 
       { props.meals.map( (meal)=> 
         <Card className= "card-background" style={{ width: '18rem', margin: '10px' }} key={meal.id}>
-          <Card.Img className="photo" variant="top" width="350" height="250" src={`../../../../src/client/assets/images/${meal.title}.jpg`}/>
+          <Card.Img className="photo" variant="top" width="350" height="250" src={`/public/images/${meal.title}.jpg`}/>
           <Card.Body>
             <Card.Title className="meal-title">{meal.title}</Card.Title>
             <Card.Text className="meal-description">
