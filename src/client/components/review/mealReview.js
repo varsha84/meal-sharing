@@ -79,7 +79,7 @@ function AddMealReview(props){
     return (
             
       <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-title">{meal.title}</div>
+        <h4>Review</h4>
         <img
             src={imageName}
             width="500"
@@ -87,6 +87,7 @@ function AddMealReview(props){
             className="d-inline-block align-top"
             alt=""
           />
+        <h4>{meal.title}</h4>  
         <Form.Group  className="mb-3">
           <Form.Label>Experience</Form.Label>
           <Form.Control type="text" placeholder="Meal Experience" onChange={(e)=> setTitle(e.target.value)} required/>
