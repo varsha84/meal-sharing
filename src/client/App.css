@@ -83,18 +83,49 @@
     padding-bottom: 20px;
     
 }
-.all-form{
+.create-form{
     width: 50%;
     margin: auto;
     
 }
-.container {
-    position: relative;
-    text-align: center;
-    color: white;
-  }
+
 .centered {
     position: absolute;
     top: 50%;
     left: 50%;
   }
+.all-form{
+    width:50%;
+    margin: auto;
+}
+/*image Hero*/
+.hero-image {
+    display: flex;
+    position: relative;
+    height: 520px;
+  }
+  
+  .hero {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+#text {
+    z-index: 100;
+    position: absolute;
+    color: white;
+    font-size: 3vw;
+    font-weight: bold;
+    left: 250px;
+    top: 100px;
+    opacity: 1.8;
+}
+#text1 {
+    z-index: 100;
+    position: absolute;
+    color: white;
+    font-size: 2vw;
+    font-weight: bold;
+    left: 400px;
+    top: 150px;
+}

@@ -11,6 +11,7 @@ import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Main from "./components/main/main";
 import { Navbar, Nav, Container, Form, FormControl, Button } from "react-bootstrap";
+import logo from './assets/images/logo2.png'
 function App() {
 
   const [meals, setMeals] = React.useState([])
@@ -62,7 +63,7 @@ function App() {
           <Container fluid>
             <Navbar.Brand href="#home">
               <img
-                src="/public/images/logo2.png"
+                src={logo}
                 width="40"
                 height="40"
                 className="d-inline-block align-top"
@@ -105,8 +106,6 @@ function App() {
         <Route exact path={`/meals/:id/review`}>
           <AddMealReview meals={meals}/>
         </Route>
-
-
       </Switch>}
       <Footer/>
       </div>

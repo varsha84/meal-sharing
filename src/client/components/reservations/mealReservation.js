@@ -2,7 +2,7 @@ import React, { useEffect }  from "react";
 import { useParams } from "react-router";
 import {Form, Button, Modal} from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
-
+import {getImageName} from "../../helper"
 
 /*  const requestOptions = {
     method: 'POST',
@@ -15,22 +15,21 @@ fetch('https://reqres.in/api/posts', requestOptions)
     
 
 function AddMealReservation(props){
-const params = useParams();
-const [meal, setMeal] = React.useState("");
-const [guests, setGuests] = React.useState(0);
-const [phoneNumber, setPhoneNumber] = React.useState("");
-const [contactName, setContactName] = React.useState("")
-const [email, setEmail] = React.useState("");
+    const params = useParams();
+    const [meal, setMeal] = React.useState("");
+    const [guests, setGuests] = React.useState(0);
+    const [phoneNumber, setPhoneNumber] = React.useState("");
+    const [contactName, setContactName] = React.useState("")
+    const [email, setEmail] = React.useState("");
+    const [imageName, setImageName] = React.useState("");
 //const [reservation, setReservation] = React.useState(false);
 
 //form validation
-const [validated, setValidated] = React.useState(false);
+    const [validated, setValidated] = React.useState(false);
 //back to home page after submit
 
-let history = useHistory();
-
-
-const mealId = parseInt(params.id);
+    let history = useHistory();
+    const mealId = parseInt(params.id);
 
 const handleSubmit=(e)=>{
     e.preventDefault();
@@ -71,44 +70,48 @@ React.useEffect(()=>{
     .then(data => {
         console.log(data)
         setMeal(data[0])
-    })
-},[])
+        setImageName(getImageName(data[0].title))
+    })},[])
+    
+    return(
+        <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
+        <Form.Group className="mb-3">
+         <h2>Reservation</h2>
+         <img
+                   src={imageName}
+                   width="500"
+                   height="300"
+                   className="d-inline-block align-top"
+                   alt=""
+                 />
+          <Form.Label>Number of guest</Form.Label>
+          <Form.Control type="text" placeholder="Number of guest" onChange={(e)=> setGuests(e.target.value)} required/>    
+         </Form.Group>
+        
+        <Form.Group className="mb-3">
+          <Form.Label>Contact Phonenumber </Form.Label>
+          <Form.Control type="number" placeholder="contact phonenumber" onChange={(e)=> setPhoneNumber(e.target.value)} required/>
+        </Form.Group>
+        
+        <Form.Group className="mb-3">
+          <Form.Label>Contact Name</Form.Label>
+          <Form.Control type="text" placeholder="contact name" onChange={(e)=> setContactName(e.target.value)} required/>      
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Email </Form.Label>
+          <Form.Control type="email" placeholder="email" onChange={(e)=> setEmail(e.target.value)} required/>      
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+        </Form>
+    
+        )
 
-
-return (
-<Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
-
- <h2>Reservation</h2>
- <img
-           src={`/public/images/${meal.title}.jpg`}
-           width="500"
-           height="300"
-           className="d-inline-block align-top"
-           alt=""
-         />
-  <Form.Group className="mb-3">
-  <Form.Label>Number of guest</Form.Label>
-  <Form.Control type="text" placeholder="Number of guest" onChange={(e)=> setGuests(e.target.value)} required/>    
- </Form.Group>
-
-<Form.Group className="mb-3">
-  <Form.Label>Contact Phonenumber </Form.Label>
-  <Form.Control type="number" placeholder="contact phonenumber" onChange={(e)=> setPhoneNumber(e.target.value)} required/>
-</Form.Group>
-
-<Form.Group className="mb-3">
-  <Form.Label>Contact Name</Form.Label>
-  <Form.Control type="text" placeholder="contact name" onChange={(e)=> setContactName(e.target.value)} required/>      
-</Form.Group>
-<Form.Group className="mb-3">
-  <Form.Label>Email </Form.Label>
-  <Form.Control type="email" placeholder="email" onChange={(e)=> setEmail(e.target.value)} required/>      
-</Form.Group>
-<Button variant="primary" type="submit">
-  Submit
-</Button>
-</Form>
-)
 }
+
+
+
+
 
 export default AddMealReservation

@@ -1,10 +1,17 @@
 import React from "react";
 import MealReservationForm from "../reservations/mealReservation";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { Card, Button, Container, Row, Col} from 'react-bootstrap'
-import { fetchRating } from "../../helper"
-
-
+import { Card, Button, Container, Row, Col} from 'react-bootstrap';
+import { fetchRating, getImageName } from "../../helper";
+import ChickenBiryani from '../../assets/images/ChickenBiryani.png'
+import ChickenBurger from '../../assets/images/ChickenBurger.png'
+import ChickenNuggets from '../../assets/images/ChickenNuggets.png'
+import ChickenSandwich from '../../assets/images/ChickenSandwich.png'
+import GrillChickenSticks from '../../assets/images/GrillChickenSticks.png'
+import NaanBread from '../../assets/images/NaanBread.png'
+import Paneertikkawraps from '../../assets/images/Paneertikkawraps.png'
+import SaltedBakedFish from '../../assets/images/SaltedBakedFish.png'
+import VegPizza from '../../assets/images/VegPizza.png'
 
  
 function MealList(props){
@@ -47,14 +54,15 @@ function MealList(props){
     <Row className="meallist"> 
       { props.meals.map( (meal)=> 
         <Card className= "card-background" style={{ width: '18rem', margin: '10px' }} key={meal.id}>
-          <Card.Img className="photo" variant="top" width="350" height="250" src={`/public/images/${meal.title}.jpg`}/>
+          <Card.Img className="photo" variant="top" width="350" height="200" src={getImageName(meal.title)}/>
           <Card.Body>
             <Card.Title className="meal-title">{meal.title}</Card.Title>
             <Card.Text className="meal-description">
               {meal.description}
             </Card.Text>
-            
-            <span className="rating"> Rating : { getStarRating (props.reviews, meal.id) }</span>
+            <div className="rating"> Price : {meal.price } </div>
+            <div className="rating"> Location : {meal.location } </div>
+            <span className="rating"> Rating : { getStarRating (props.reviews, meal.id) } </span>
             <div className="button-row">
             {(props.availableReservations.filter((data) => data.id === meal.id).length > 0)? 
               <Button variant="success"  size="sm" href={`/meals/${meal.id}`}> Reserve </Button> : 
