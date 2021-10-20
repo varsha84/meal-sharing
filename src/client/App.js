@@ -27,6 +27,9 @@ function App() {
         })
         .catch((e)=>console.log(e))
     }
+    else if(meals.length == 0){
+      console.log("sanju")
+    }
     else{    
       const searchMeal = meals.filter((meal)=> meal.title.toLowerCase().includes(search.toLowerCase()))
       setMeals(searchMeal);
@@ -72,18 +75,13 @@ function App() {
             </Navbar.Brand>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="/home">Home</Nav.Link>
-                <Nav.Link href="/">Meals</Nav.Link>
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/meals">Meals</Nav.Link>
                 <Nav.Link href="/createMeal">Create Meals</Nav.Link>
               </Nav>
               <Form className="d-flex">
-                <FormControl
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                  onChange={(e)=>setSearch(e.target.value)}/>
-                
+                <FormControl type="search"  placeholder="Search" className="me-2" aria-label="Search" 
+                  onChange={(e)=>setSearch(e.target.value)}/>                
               </Form>
             </Navbar.Collapse>
           </Container>
@@ -91,10 +89,10 @@ function App() {
         </Navbar>
       
         {<Switch>
-        <Route exact path="/home">
+        <Route exact path="/">
           <Main/>
         </Route> 
-        <Route exact path="/">
+        <Route exact path="/meals">
           <MealList meals={meals} availableReservations = {availableReservations} reviews={reviews}/>
         </Route> 
         <Route exact path="/createMeal">

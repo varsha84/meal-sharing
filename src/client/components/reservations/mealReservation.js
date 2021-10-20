@@ -76,7 +76,7 @@ React.useEffect(()=>{
     return(
         <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className="mb-3">
-         <h2>Reservation</h2>
+         <h4>Reservation</h4>
          <img
                    src={imageName}
                    width="500"
@@ -84,6 +84,7 @@ React.useEffect(()=>{
                    className="d-inline-block align-top"
                    alt=""
                  />
+        <h4>{meal.title}</h4>
           <Form.Label>Number of guest</Form.Label>
           <Form.Control type="text" placeholder="Number of guest" onChange={(e)=> setGuests(e.target.value)} required/>    
          </Form.Group>
