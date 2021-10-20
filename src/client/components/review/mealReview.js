@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router";
 import {Form, Button, Row, Col, Container, Modal } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
+import {getImageName} from "../../helper"
 
 function AddMealReview(props){
     console.log("review here")
@@ -12,6 +13,7 @@ function AddMealReview(props){
     const [description, setDescription] = React.useState("");
     const [stars, setStars] = React.useState(0);
     const [title, setTitle] = React.useState("");
+    const [imageName, setImageName] = React.useState("");
 
     //back to meal page after submit
     let history = useHistory();
@@ -27,6 +29,7 @@ function AddMealReview(props){
         .then((data)=>{
             console.log(data[0])
             setMeal(data[0])
+            setImageName(getImageName(data[0].title))
         })
         .catch((e)=>console.log(e))
 
@@ -78,7 +81,7 @@ function AddMealReview(props){
       <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
         <div className="form-title">{meal.title}</div>
         <img
-            src={`/public/images/${meal.title}.jpg`}
+            src={imageName}
             width="500"
             height="300"
             className="d-inline-block align-top"

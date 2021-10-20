@@ -3,9 +3,12 @@ import {Image, Container, Row} from 'react-bootstrap'
 
 function Main(){
     return(
-        <Row> 
-                <Image  src="../../../../src/client/assets/images/main4.jpeg" alt="home image"/>
-        </Row>  
+        <Row className="hero-image"> 
+                <Image  className="hero" src="/public/images/main4.jpeg" alt="home image"/>
+        <h1 id="text">Amazing and Delicious food</h1>
+        <p id="text1">Enjoy everday</p>
+        </Row>
+
     )
 }
 export default Main
