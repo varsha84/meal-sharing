@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+require('dotenv').config();
 const path = require('path');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
@@ -54,9 +54,8 @@ module.exports = {
       favicon: './public/favicon.ico',
     }),
     new CaseSensitivePathsPlugin(),
-    // new Dotenv({
-    //   systemvars: true,
-    //   safe: false,
-    // }),
+     new Dotenv({    
+       safe: false,
+     }),
   ],
 };
