@@ -1,17 +1,9 @@
 import React, { useEffect }  from "react";
 import { useParams } from "react-router";
-import {Form, Button, Modal} from 'react-bootstrap';
+import {Form, Button, Modal, Image} from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import {getImageName} from "../../helper"
 
-/*  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title: 'React POST Request Example' })
-};
-fetch('https://reqres.in/api/posts', requestOptions)
-    .then(response => response.json())
-    .then(data => this.setState({ postId: data.id })); */
     
 
 function AddMealReservation(props){
@@ -74,17 +66,14 @@ React.useEffect(()=>{
     })},[])
     
     return(
+        <div>
+        <div className="all-form "> 
+            <h4>Reservation</h4>
+            <Image  className="image-size" src={imageName} />
+            <h4>{meal.title}</h4>
+        </div>
         <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className="mb-3">
-         <h4>Reservation</h4>
-         <img
-                   src={imageName}
-                   width="500"
-                   height="300"
-                   className="d-inline-block align-top"
-                   alt=""
-                 />
-        <h4>{meal.title}</h4>
           <Form.Label>Number of guest</Form.Label>
           <Form.Control type="text" placeholder="Number of guest" onChange={(e)=> setGuests(e.target.value)} required/>    
          </Form.Group>
@@ -106,7 +95,7 @@ React.useEffect(()=>{
           Submit
         </Button>
         </Form>
-    
+        </div>
         )
 
 }

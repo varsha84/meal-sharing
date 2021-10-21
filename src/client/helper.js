@@ -54,7 +54,7 @@ function getImageName(title){
     if (imageName==="NaanBread"){
         return NaanBread
     }
-    if (imageName==="Paneertikkawraps"){
+    if (imageName==="PaneerTikkaWraps"){
         return Paneertikkawraps
     }
     if (imageName==="SaltedBakedFish"){
