@@ -57,7 +57,7 @@ const handleSubmit=(e)=>{
 
 React.useEffect(()=>{
     //const findMeal = props.meals.filter((meal)=>meal.id === mealId)
-    fetch(`http://localhost:5000/api/meals/${mealId}`)
+    fetch(`/api/meals/${mealId}`)
     .then(response=>response.json())
     .then(data => {
         console.log(data)
