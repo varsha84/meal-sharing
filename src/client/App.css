@@ -1,3 +1,126 @@
 * {
     box-sizing: border-box;
 }
+.main-page{
+    width: 100%;
+    height: auto;
+}
+
+.button-row{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+.footer{
+    margin-top: 50px;
+    background-color:rgb(88, 189, 109);
+   
+}
+
+.footer-content{
+    padding: 40px;
+    
+}
+
+ .social-media{
+    padding:5px;
+} 
+.ft-title {
+    color: #fff;
+    font-family: ’Merriweather’, serif;
+    font-size: 1.375rem;
+    padding-bottom: 0.625rem;
+}
+.ft-main-item {
+    padding: 1.25rem;
+    min-width: 12.5rem /*200px*/;
+}
+
+.social-icons{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.yellow-color{
+    color:rgb(240, 190, 25);
+}
+.meallist{
+    justify-content: space-evenly;
+}
+.photo{
+    padding-top: 10px;
+}
+.card-background{
+    background-color:rgb(231, 190, 137);
+    border-radius: 5px;
+}
+
+.main-container{
+    background-color:#e4d0d1;
+}
+.meal-title{
+    font-size:larger;
+    font-weight: bold;
+    
+}
+.meal-description{
+    font-size: smaller;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.rating{
+    font-size: smaller;
+}
+
+.modal-header img {
+    max-width: 100%;
+}
+.form-title{
+    font-size: larger;
+    font-weight: bold;
+    padding-bottom: 20px;
+    
+}
+.create-form{
+    width: 50%;
+    margin: auto;
+    
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+.all-form{
+    width:50%;
+    overflow: hidden;
+    margin: auto;
+}
+.image-size {
+    max-width: 100%;
+}
+
+.hero-image {
+    height: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+.title-text{
+    font-size:50px;
+}
+#text{
+    font-size:30px;
+}
