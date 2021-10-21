@@ -70,13 +70,13 @@ function AddMealReview(props){
     }
     return (
       <div>
-        <div className="all-form "> 
-            <h4>Review</h4>
-            <Image  className="image-size" src={imageName} />
-            <h4>{meal.title}</h4>
-        </div>
-      <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
-          
+      <div className="all-form "> 
+          <h4>Review</h4>
+          <Image  className="image-size" src={imageName} />
+          <h4>{meal.title}</h4>
+      </div>    
+      <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>  
+
         <Form.Group  className="mb-3">
           <Form.Label>Experience</Form.Label>
           <Form.Control type="text" placeholder="Meal Experience" onChange={(e)=> setTitle(e.target.value)} required/>
