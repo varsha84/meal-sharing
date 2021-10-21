@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import MealList from "./components/meals/mealList";
 import CreateMeal from "./components/meals/createMeal";
-import Header from "./components/header/header";
 import Footer  from "./components/footer/footer";
 import {fetchMeals, fetchAvailableReservation, fetchReview} from "./helper.js"
 import AddMealReservation from "./components/reservations/mealReservation";
@@ -27,9 +26,6 @@ function App() {
         })
         .catch((e)=>console.log(e))
     }
-    else if(meals.length == 0){
-      console.log("sanju")
-    }
     else{    
       const searchMeal = meals.filter((meal)=> meal.title.toLowerCase().includes(search.toLowerCase()))
       setMeals(searchMeal);
@@ -53,12 +49,6 @@ function App() {
     })
   }, [])
 
- /* function handleCreateMealForm(){
-   console.log("abcd")
-   return (
-    <CreateMeal/>
-   )
- } */
   return (
     <Router>
       <div fluid className="main-container">
@@ -80,8 +70,13 @@ function App() {
                 <Nav.Link href="/createMeal">Create Meals</Nav.Link>
               </Nav>
               <Form className="d-flex">
-                <FormControl type="search"  placeholder="Search" className="me-2" aria-label="Search" 
-                  onChange={(e)=>setSearch(e.target.value)}/>                
+                <FormControl
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                  onChange={(e)=>setSearch(e.target.value)}/>
+                
               </Form>
             </Navbar.Collapse>
           </Container>

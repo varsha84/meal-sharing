@@ -18,15 +18,9 @@ export default function Footer(){
             <small>Copyrights : @ Varsha Verma</small>
             </Col>
             <Col className="footer-content social-icons">
-                
                     <a href="/"><i className="fab fa-facebook-f fa-2x"></i></a>
-                
-                
                     <a href="/"><i className="fab fa-twitter fa-2x"></i></a>
-                
-                
                     <a href="/"><i className="fab fa-instagram fa-2x"></i></a>
-                
             </Col>
             <Col className="footer-content">
                 <div className="ft-main-item">
@@ -38,17 +32,7 @@ export default function Footer(){
                     </form>
                 </div>
             </Col>
-            
-           
         </Row >
-    
-        
-        
     </Container >
-
-       
-    
-            
     )
-
 }
