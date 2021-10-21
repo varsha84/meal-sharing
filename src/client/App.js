@@ -65,8 +65,8 @@ function App() {
             </Navbar.Brand>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="/home">Home</Nav.Link>
-                <Nav.Link href="/">Meals</Nav.Link>
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/meals">Meals</Nav.Link>
                 <Nav.Link href="/createMeal">Create Meals</Nav.Link>
               </Nav>
               <Form className="d-flex">
@@ -84,10 +84,10 @@ function App() {
         </Navbar>
       
         {<Switch>
-        <Route exact path="/home">
+        <Route exact path="/">
           <Main/>
         </Route> 
-        <Route exact path="/">
+        <Route exact path="/meals">
           <MealList meals={meals} availableReservations = {availableReservations} reviews={reviews}/>
         </Route> 
         <Route exact path="/createMeal">

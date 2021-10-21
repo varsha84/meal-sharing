@@ -20,7 +20,7 @@ function AddMealReview(props){
     const [validated, setValidated] = React.useState(false);
 
     React.useEffect(()=>{
-        fetch(`http://localhost:5000/api/meals/${mealId}`)
+        fetch(`/api/meals/${mealId}`)
         .then((response)=>response.json())
         .then((data)=>{
             console.log(data[0])

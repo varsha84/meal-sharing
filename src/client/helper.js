@@ -10,25 +10,25 @@ import VegPizza from './assets/images/VegPizza.png'
 
 
 function fetchMeals(){
-    return fetch("http://localhost:5000/api/meals")
+    return fetch("/api/meals")
     .then((response=>response.json()))
 
 }
 
 function fetchAvailableReservation(){
-    return fetch("http://localhost:5000/api/meals?availableReservations=true")
+    return fetch("/api/meals?availableReservations=true")
     .then((response=>response.json()))
 
 }
 
 function fetchReview(){
-    return fetch("http://localhost:5000/api/reviews")
+    return fetch("/api/reviews")
     .then((response=>response.json()))
     
 
 }
 function fetchRating(mealId){
-    return fetch(`http://localhost:5000/api/reviews/meal/${mealId}`)
+    return fetch(`/api/reviews/meal/${mealId}`)
     .then((response=>response.json()))
         
 }
