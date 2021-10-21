@@ -15,7 +15,6 @@ function fetchMeals(){
 
 }
 
-
 function fetchAvailableReservation(){
     return fetch("http://localhost:5000/api/meals?availableReservations=true")
     .then((response=>response.json()))
@@ -54,7 +53,7 @@ function getImageName(title){
     if (imageName==="NaanBread"){
         return NaanBread
     }
-    if (imageName==="Paneertikkawraps"){
+    if (imageName==="PaneerTikkaWraps"){
         return Paneertikkawraps
     }
     if (imageName==="SaltedBakedFish"){

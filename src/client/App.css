@@ -71,7 +71,6 @@
 }
 .rating{
     font-size: smaller;
-    font-weight: bold;
 }
 
 .modal-header img {
@@ -96,9 +95,12 @@
   }
 .all-form{
     width:50%;
+    overflow: hidden;
     margin: auto;
 }
-
+.image-size {
+    max-width: 100%;
+}
 
 .hero-image {
     height: 50%;

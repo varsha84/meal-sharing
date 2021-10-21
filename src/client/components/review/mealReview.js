@@ -1,11 +1,10 @@
 import React from "react";
 import { useParams } from "react-router";
-import {Form, Button, Row, Col, Container, Modal } from 'react-bootstrap';
+import {Form, Button, Row, Col, Container, Modal, Image } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import {getImageName} from "../../helper"
 
 function AddMealReview(props){
-    console.log("review here")
     const params = useParams();
     const mealId = params.id;
 
@@ -18,9 +17,6 @@ function AddMealReview(props){
     //back to meal page after submit
     let history = useHistory();
 
-    // Alert successful
-    //const [show, setShow] = React.useState(true);
-    //form validation
     const [validated, setValidated] = React.useState(false);
 
     React.useEffect(()=>{
@@ -36,7 +32,6 @@ function AddMealReview(props){
     },[])
     
     function handleSubmit(e){
-        console.log("submit review handle");
         e.preventDefault();
 
         const form = e.currentTarget;
@@ -72,22 +67,16 @@ function AddMealReview(props){
             history.push("/")
         })
         .catch(e => console.log(e));
-        
-        
-        console.log("i am done");
     }
     return (
-            
+      <div>
+        <div className="all-form "> 
+            <h4>Review</h4>
+            <Image  className="image-size" src={imageName} />
+            <h4>{meal.title}</h4>
+        </div>
       <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
-        <h4>Review</h4>
-        <img
-            src={imageName}
-            width="500"
-            height="300"
-            className="d-inline-block align-top"
-            alt=""
-          />
-        <h4>{meal.title}</h4>  
+          
         <Form.Group  className="mb-3">
           <Form.Label>Experience</Form.Label>
           <Form.Control type="text" placeholder="Meal Experience" onChange={(e)=> setTitle(e.target.value)} required/>
@@ -104,6 +93,7 @@ function AddMealReview(props){
         </Form.Group>
     <Button variant="primary" type="submit" >Submit</Button>
     </Form>
+    </div>
  )
 }
 export default AddMealReview
