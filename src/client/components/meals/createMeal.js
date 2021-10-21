@@ -24,7 +24,6 @@ function CreateMeal(){
     //handle submit onSubmit
 
     const handleSubmit=(e)=>{
-      console.log("submit handle");
       e.preventDefault();
       
       const form = e.currentTarget;
@@ -61,11 +60,7 @@ function CreateMeal(){
             alert("meal created successfully")
           history.push("/home")
       })
-      .catch(e => console.log(e));
-      
-      console.log("i am done");
-                
-  
+      .catch(e => console.log(e));  
     }
 
 

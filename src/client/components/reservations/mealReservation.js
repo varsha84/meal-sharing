@@ -3,8 +3,7 @@ import { useParams } from "react-router";
 import {Form, Button, Modal, Image} from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import {getImageName} from "../../helper"
-
-    
+ 
 
 function AddMealReservation(props){
     const params = useParams();
@@ -14,18 +13,16 @@ function AddMealReservation(props){
     const [contactName, setContactName] = React.useState("")
     const [email, setEmail] = React.useState("");
     const [imageName, setImageName] = React.useState("");
-//const [reservation, setReservation] = React.useState(false);
 
-//form validation
+    //form validation
     const [validated, setValidated] = React.useState(false);
-//back to home page after submit
+    //back to home page after submit
 
     let history = useHistory();
     const mealId = parseInt(params.id);
 
 const handleSubmit=(e)=>{
     e.preventDefault();
-    console.log(e)
     
     const newReservation = {
         number_of_guests: guests,
@@ -46,12 +43,10 @@ const handleSubmit=(e)=>{
     .then(response => response.json())
     .then(data => {
         console.log(data)
-        //setReservation(true)
         alert("reservation done")
         history.push("/")
     })
     .catch(e => console.log(e));
-    console.log("i am done"); 
 }
 
 
@@ -73,6 +68,7 @@ React.useEffect(()=>{
             <h4>{meal.title}</h4>
         </div>
         <Form className="all-form" noValidte validated={validated} onSubmit={(e) => handleSubmit(e)}>
+            
         <Form.Group className="mb-3">
           <Form.Label>Number of guest</Form.Label>
           <Form.Control type="text" placeholder="Number of guest" onChange={(e)=> setGuests(e.target.value)} required/>    
@@ -97,11 +93,6 @@ React.useEffect(()=>{
         </Form>
         </div>
         )
-
 }
-
-
-
-
 
 export default AddMealReservation

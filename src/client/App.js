@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import MealList from "./components/meals/mealList";
 import CreateMeal from "./components/meals/createMeal";
-import Header from "./components/header/header";
 import Footer  from "./components/footer/footer";
 import {fetchMeals, fetchAvailableReservation, fetchReview} from "./helper.js"
 import AddMealReservation from "./components/reservations/mealReservation";
@@ -53,12 +52,6 @@ function App() {
     })
   }, [])
 
- /* function handleCreateMealForm(){
-   console.log("abcd")
-   return (
-    <CreateMeal/>
-   )
- } */
   return (
     <Router>
       <div fluid className="main-container">

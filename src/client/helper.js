@@ -15,7 +15,6 @@ function fetchMeals(){
 
 }
 
-
 function fetchAvailableReservation(){
     return fetch("/api/meals?availableReservations=true")
     .then((response=>response.json()))
