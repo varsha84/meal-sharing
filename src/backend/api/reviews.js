@@ -27,6 +27,22 @@ router.post("/", async (request, response) => {
       throw error;
     }
   });
+//Returns meal by id with api/reviews/meal/2
+router.get("/meal/:id", async(request,response)=>{
+  try{
+    console.log("get all review by meal id:")
+    await knex("review")
+    .where({meal_id: request.params.id})
+    .avg("stars")
+    .then(data =>response.json(data));
+
+
+  }catch(error){
+    throw error;
+  }
+});
+
+
   //Returns review by id with api/reviews/2
   router.get("/:id", async(request,response)=>{
     try{
